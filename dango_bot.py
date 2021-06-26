@@ -20,14 +20,29 @@ CMD_PUNCH_STICKER_SET = []
 CMD_DEFEND_STICKER_SET = []
 CMD_ADACHI_STICKER_SET = []
 CMD_SHIMA_STICKER_SET = []
-# NOTE: file_ids do not work when bot token is changed
-DANGO_GIF = ['CgACAgEAAxkBAAM7YNLg_HvYfG-iZXE7TOQvbMjbPaQAAq8AA1ZqEUfsYJkqQvS3Vx8E',
-             'CgACAgEAAxkBAANDYNLijfzWKs43KyoAAcc3wKwJQT6eAAKxAANWahFHIsYR4uDPfpgfBA',
-             'CgACAgEAAxkBAANHYNLiok3R7uTsTwIYuqrAwo71F6AAAiMCAAKxr2lECgUL1gABNVPUHwQ',
-             'CgACAgEAAxkBAANLYNLitNx9YQHaaoY7apuzHf-377oAAqEBAAJW24BENFsUZjQyHjwfBA',
-             'CgACAgEAAxkBAANPYNLi1uQ5eUszbG7s0YJ39Pj_0fwAArsBAAI6euFEfbTspSwpHOsfBA',
-             'CgACAgEAAxkBAANXYNLjWGQZZJT9CVEjwO6K27WF6M0AAscBAAImQJlGWyW0EyePtgIfBA']
-DANGO_VIDEO = ['BAACAgEAAxkBAANfYNLliYRzXhrVBv-TOiHuAW3wryIAAjwBAALoiJhGxKUw-Bq15OIfBA']
+DANGO_GIF = ['CgACAgEAAxkBAAIB_WDS7ep8sF4t39JyWnqTT8NcmfdPAAKvAANWahFHqPdor2DaT3wfBA',
+             'CgACAgEAAxkBAAICBGDS7fkw8YOVHlQzKoaHKI-7w8x8AAKxAANWahFH_PTIsZOG-ywfBA',
+             'CgACAgEAAxkBAAICC2DS7gtxZA-7zOFaKAdyEUpwGvVVAAIjAgACsa9pRID1-4G2YAc9HwQ',
+             'CgACAgEAAxkBAAICEmDS7huWklNDpGA0uObCHmLn3rhlAAKhAQACVtuARI5zbKgAAVe_sx8E',
+             'CgACAgEAAxkBAAICGWDS7ith4pMi3m6SjA0Mi6sSZkFqAAK7AQACOnrhRE-faGfcc679HwQ',
+             'CgACAgEAAxkBAAICMmDS7mm6sGQgFmuyw4WiLDE3o6szAALHAQACJkCZRl7hy6WOsEBTHwQ']
+DANGO_VIDEO = ['BAACAgEAAxkBAAICKmDS7kwrEVbqzHciTixgGkiHu-LpAAJsAQACGT2ZRp3H-xu9NUfUHwQ']
+TIE_GIF = ['CgACAgUAAxkBAAICdWDXZVU3zmjm1M2AbwM6KkhccHKQAALJAAP91qFV8Xx55mCoLTYgBA',
+           'CgACAgUAAxkBAAICfGDXZWzF7SRQzFabByAuLFhSVDKkAAK5AQAC7JWpV8_fmCtJq15pIAQ',
+           'CgACAgEAAxkBAAICg2DXZXnS6KgqTNy1XyiAsSW9UnNIAAIrAANbrxlFRg_ebpXDzuggBA',
+           'CgACAgUAAxkBAAICimDXZYMbX2ZvvUBuwNaw6omJJtCuAALUAgACkqmZVn6mMrELuS_VIAQ',
+           'CgACAgUAAxkBAAICkWDXZZPdDPR3Kvf4CRRLcNuTz3sHAAKLAQACPJKJVoOhMcgRU7f0IAQ',
+           'CgACAgEAAxkBAAICmGDXZcV1FYFMkrOhMyVSehxWd66YAAIyAANbrxlFQj8qeS6FAAEfIAQ',
+           'CgACAgUAAxkBAAICn2DXZc6bvQ2ZPCQonV6EwhM3OHrrAAK0AQACoOM5V3AzcCLu6_tjIAQ',
+           'CgACAgUAAxkBAAICpmDXZfNppSz5JW_TKs0J4HdjSzGMAAL6AQACFqlpV9WscvDMSE2MIAQ',
+           'CgACAgUAAxkBAAICrWDXZf1hsz8YHIjwOF0rxS8uWE20AAKXAwACj5ToVryB2GYj6U70IAQ',
+           'CgACAgUAAxkBAAICtGDXZhN_SuMl2x031NbI6qV3PxJQAALCAAP91qFV87G-Rb2ip6IgBA',
+           'CgACAgUAAxkBAAICu2DXZiF_uQyX8QWbT63mmYuFG9HyAAKpBQAC3Pv3A4RZ4E2fNCLeIAQ',
+           'CgACAgEAAxkBAAICwmDXZkeZX8UxbV85zCDQFUJbGXCSAAL7AAPyCDFHj-1EVh80RFQgBA',
+           'CgACAgUAAxkBAAICyWDXZlh0DLiQco7-8o32rfHVvIndAAIkAgACm005VfAQM0ulC_CgIAQ',
+           'CgACAgIAAxkBAAIC0GDXZnVVwrdbTATLhpCuW7hukyb9AAILAwACBuI4SiDz3_YM4AN4IAQ',
+           'CgACAgEAAxkBAAIC12DXZp2AA9BIp6MmgWcRlymWeitwAALOAANWGJhHQkITdEatjbYgBA']
+
 
 sticker_set_cache = {}
 
@@ -36,11 +51,11 @@ MSGINFO = 1
 
 
 # helper functions
-def list_items(_list, _indexes):
+def list_items(_list: list, _indexes: list[int]) -> list:
     return [_list[i] for i in _indexes]
 
 
-def append_strlist(string, strlist, indent='  '):
+def append_strlist(string: str, strlist: list[str], indent='  ') -> str:
     if not string.endswith('\n'):
         string += '\n'
     for s in strlist:
@@ -51,7 +66,7 @@ def append_strlist(string, strlist, indent='  '):
     return string
 
 
-def combine_no_none(keys, values):
+def combine_no_none(keys: str, values: str) -> list[str]:
     result = []
     for k, v in zip(keys, values):
         if v:
@@ -111,6 +126,10 @@ def attack_command(update: Update, context: CallbackContext) -> None:
         update.message.reply_document(random.choice(DANGO_GIF), quote=False)
 
 
+def tie_command(update: Update, context: CallbackContext) -> None:
+    update.message.reply_document(random.choice(TIE_GIF), quote=False)
+
+
 def send_sticker_command(update: Update, context: CallbackContext) -> None:
     try:
         pack_name = context.args[0]
@@ -133,7 +152,7 @@ def msginfo_start(update: Update, context: CallbackContext) -> int:
     return MSGINFO
 
 
-def user_info_strlist(user: telegram.User):
+def user_info_strlist(user: telegram.User) -> list[str]:
     keys = ['User ID', 'First Name', 'Last Name',
             'User Name', 'Language Code']
     values = [user.id, user.first_name, user.last_name,
@@ -141,18 +160,18 @@ def user_info_strlist(user: telegram.User):
     return combine_no_none(keys, values)
 
 
-def chat_info_strlist(chat: telegram.Chat):
+def chat_info_strlist(chat: telegram.Chat) -> list[str]:
     keys = ['Chat ID', 'Chat Type', 'Chat Title', 'Username', 'First Name', 'Last Name', 'Bio', 'Description']
     values = [chat.id, chat.type, chat.title, chat.username, chat.first_name, chat.last_name, chat.bio,
               chat.description]
     return combine_no_none(keys, values)
 
 
-def datetime_info_strlist(date: datetime.datetime):
+def datetime_info_strlist(date: datetime.datetime) -> list[str]:
     return [str(date)]
 
 
-def doc_info_strlist(doc: telegram.Document):
+def doc_info_strlist(doc: telegram.Document) -> list[str]:
     keys = ['File ID', 'File Unique ID',
             'File Name', 'Mime Type', 'File Size']
     values = [doc.file_id, doc.file_unique_id,
@@ -160,13 +179,13 @@ def doc_info_strlist(doc: telegram.Document):
     return combine_no_none(keys, values)
 
 
-def photo_info_strlist(photo: telegram.PhotoSize):
+def photo_info_strlist(photo: telegram.PhotoSize) -> list[str]:
     keys = ['File ID', 'File Unique ID', 'Photo Width', 'Photo Height', 'File Size']
     values = [photo.file_id, photo.file_unique_id, photo.width, photo.height, photo.file_size]
     return combine_no_none(keys, values)
 
 
-def video_info_strlist(video: telegram.Video):
+def video_info_strlist(video: telegram.Video) -> list[str]:
     keys = ['File ID', 'File Unique ID', 'Video Width',
             'Video Height', 'Video Duration', 'Video Name', 'File Size']
     values = [video.file_id, video.file_unique_id, video.width, video.height, video.duration, video.file_name,
@@ -174,7 +193,7 @@ def video_info_strlist(video: telegram.Video):
     return combine_no_none(keys, values)
 
 
-def sticker_info_strlist(sticker: telegram.Sticker):
+def sticker_info_strlist(sticker: telegram.Sticker) -> list[str]:
     keys = ['File ID', 'File Unique ID', 'Width', 'Height', 'File Size', 'Emoji', 'Sticker Set Name']
     values = [sticker.file_id, sticker.file_unique_id, sticker.width, sticker.height, sticker.file_size, sticker.emoji,
               sticker.set_name]
@@ -198,6 +217,10 @@ def msginfo_command(update: Update, context: CallbackContext) -> int:
     if date:
         result = 'The message is sent on:'
         result = append_strlist(result, datetime_info_strlist(date))
+        update.message.reply_text(result)
+    text = update.message.text
+    if text:
+        result = f'The message contains the text:\n{text}'
         update.message.reply_text(result)
     doc = update.message.document
     if doc:
@@ -228,7 +251,7 @@ def cancel(update: Update, context: CallbackContext) -> int:
     return ConversationHandler.END
 
 
-def initialize_stickers(bot):
+def initialize_stickers(bot) -> None:
     dango_sticker_set = bot.get_sticker_set('tuanzi_public').stickers
     adashima_sticker_set = bot.get_sticker_set('adashima').stickers
 
@@ -273,6 +296,8 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("shima", shima_command))
     dispatcher.add_handler(CommandHandler("repeat", repeat_command))
     dispatcher.add_handler(CommandHandler("attack", attack_command))
+    dispatcher.add_handler(CommandHandler("tie", tie_command))
+    dispatcher.add_handler(CommandHandler("tietie", tie_command))
     dispatcher.add_handler(CommandHandler(
         "send_sticker", send_sticker_command))
     dispatcher.add_handler(msginfo_handler)
